@@ -2,40 +2,15 @@ import React from "react";
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 import CountUp from 'react-countup';
-
-const useStyles = makeStyles({
-  root: {
-    maxWidth: 275,
-    minWidth: 275,
-    marginRight: 20,
-  },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-  mainDiv: {
-    display: 'flex',
-    marginTop: 20,
-    justifyContent: "center",
-  }
-});
+import './card.css';
 
 const Cards = ({ data: { deaths, confirmed, recovered, lastUpdate } }) => {
-  const classes = useStyles();
   return (
     deaths.value || confirmed.value || recovered.value ?
-      <div className={classes.mainDiv}>
-        <Card className={classes.root}>
-          <CardContent className={classes.title}>
+      <div className="container">
+        <Card className="root recovered">
+          <CardContent className="title">
             <Typography color="textSecondary" gutterBottom>
               Recovered
             </Typography>
@@ -49,8 +24,8 @@ const Cards = ({ data: { deaths, confirmed, recovered, lastUpdate } }) => {
             </Typography>
           </CardContent>
         </Card>
-        <Card className={classes.root}>
-          <CardContent className={classes.title}>
+        <Card className="root infected">
+          <CardContent className="title">
             <Typography color="textSecondary" gutterBottom>
               Infected
           </Typography>
@@ -64,10 +39,10 @@ const Cards = ({ data: { deaths, confirmed, recovered, lastUpdate } }) => {
             </Typography>
           </CardContent>
         </Card>
-        <Card className={classes.root}>
-          <CardContent className={classes.title}>
+        <Card className="root deaths">
+          <CardContent className="title">
             <Typography color="textSecondary" gutterBottom>
-              Death
+              Deaths
           </Typography>
             <Typography variant="body2" component="p">
               <CountUp start={0} end={deaths.value} duration={2.75} separator="," />
