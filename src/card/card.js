@@ -25,6 +25,7 @@ const useStyles = makeStyles({
   mainDiv: {
     display: 'flex',
     marginTop: 20,
+    justifyContent: "center",
   }
 });
 

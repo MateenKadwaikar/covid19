@@ -4,6 +4,7 @@ import { getDataService } from './redux/service.js'
 import Cards from './card/card.js';
 import DropDownList from './dropdownlist/dropdownlist.js'
 import { useDispatch, useSelector } from 'react-redux'
+import image from './image/image.jpg'
 
 function App() {
   const dispatch = useDispatch();
@@ -21,9 +22,12 @@ function App() {
   const handleCountryEvent = async (e) => {
     dispatch(getDataService(e))
   }
-
+  console.log(image);
   return (
     <div className="App">
+      <div>
+        <img src={image} alt="COVID-19" height="100" width="auto" />
+      </div>
       <DropDownList handleCountryEvent={handleCountryEvent} />
       <Cards data={responseData} />
     </div>
