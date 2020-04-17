@@ -21,10 +21,18 @@ const getDropDownListAction = (data) => {
   }
 }
 
+const errorMessageAction = (data) => {
+  return {
+    type: Types.ERROR_MESSAGE,
+    payload: data
+  }
+}
+
 const Actions = {
   getWorldDataAction,
   getByCountryAction,
-  getDropDownListAction
+  getDropDownListAction,
+  errorMessageAction
 }
 
 export default Actions;

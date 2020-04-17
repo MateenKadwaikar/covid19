@@ -12,7 +12,8 @@ function App() {
     recovered: state.getWorldDataReducer?.recovered,
     confirmed: state.getWorldDataReducer?.confirmed,
     lastUpdate: state.getWorldDataReducer?.lastUpdate,
-    deaths: state.getWorldDataReducer?.deaths
+    deaths: state.getWorldDataReducer?.deaths,
+    isLoading: state.getWorldDataReducer?.isLoading
   })
   )
   useEffect(() => {
@@ -22,7 +23,6 @@ function App() {
   const handleCountryEvent = async (e) => {
     dispatch(getDataService(e))
   }
-  console.log(image);
   return (
     <div className="App">
       <div>

@@ -4,10 +4,16 @@ const initialState = {
   deaths: {},
   confirmed: {},
   recovered: {},
-  lastUpdate: ''
+  lastUpdate: '',
+  isLoading: true
 }
 const DropDownInitialState = {
-  dropDownList: []
+  dropDownList: [],
+  isLoading: true
+}
+
+const ErrorIntitialState = {
+  errorMessage: '',
 }
 
 export const getWorldDataReducer = (state = initialState, action) => {
@@ -18,7 +24,8 @@ export const getWorldDataReducer = (state = initialState, action) => {
         deaths: action.payload.deaths,
         confirmed: action.payload.confirmed,
         recovered: action.payload.recovered,
-        lastUpdate: action.payload.lastUpdate
+        lastUpdate: action.payload.lastUpdate,
+        isLoading: action.payload.isLoading
       }
     case Types.GET_BY_COUNTRY:
       return {
@@ -38,9 +45,22 @@ export const getDropDownListReducer = (state = DropDownInitialState, action) => 
     case Types.GET_DROP_DOWN_LIST:
       return {
         ...state,
-        dropDownList: action.payload.map(x => ({ value: x.name }))
+        dropDownList: action.payload.countries.map(x => ({ value: x.name })),
+        isLoading: action.payload.isLoading
       }
     default:
       return state
+  }
+}
+
+export const errorMessageReducer = (state = ErrorIntitialState, action) => {
+  switch (action.type) {
+    case Types.ERROR_MESSAGE:
+      return {
+        ...state,
+        errorMessage: action.payload
+      }
+    default:
+      return state;
   }
 }

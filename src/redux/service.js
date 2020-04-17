@@ -16,13 +16,16 @@ export const getDataService = (country = '') => {
         deaths,
         confirmed,
         recovered,
-        lastUpdate
+        lastUpdate,
+        isLoading: false
       };
       country ?
         dispatch(Actions.getByCountryAction(modifiedData)) :
         dispatch(Actions.getWorldDataAction(modifiedData));
-    } catch (error) {
-      console.log(error)
+    } catch (err) {
+      const { response: { data } } = err;
+      console.error(data)
+      dispatch(Actions.errorMessageAction(err.response.data.error.message))
     }
   }
 }
@@ -31,9 +34,13 @@ export const getDropDownListService = () => {
   return async (dispatch) => {
     try {
       const { data: { countries } } = await axios.get(`${url}/countries`);
-      dispatch(Actions.getDropDownListAction(countries));
+      let modifiedData = {
+        isLoading: false,
+        countries
+      };
+      dispatch(Actions.getDropDownListAction(modifiedData));
     } catch (err) {
-      console.log(err)
+      dispatch(Actions.errorMessageAction(err.response.data.error.message))
     }
   }
 

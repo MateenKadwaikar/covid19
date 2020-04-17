@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import CountUp from 'react-countup';
 import './card.css';
 
-const Cards = ({ data: { deaths, confirmed, recovered, lastUpdate } }) => {
+const Cards = ({ data: { deaths, confirmed, recovered, lastUpdate, isLoading } }) => {
   return (
     deaths.value || confirmed.value || recovered.value ?
       <div className="container">
@@ -55,7 +55,7 @@ const Cards = ({ data: { deaths, confirmed, recovered, lastUpdate } }) => {
           </CardContent>
         </Card>
       </div>
-      : null
+      : { isLoading } ? <span>Loading....</span> : null
   );
 
 }

@@ -8,19 +8,23 @@ import "./dropdown.css"
 const DropDownList = ({ handleCountryEvent }) => {
   const dispatch = useDispatch();
 
-  let dropDownList = useSelector((state) => state.getDropDownListReducer.dropDownList);
+  let dropDownList = useSelector((state) => ({
+    dropDown: state.getDropDownListReducer.dropDownList,
+    isLoading: state.getDropDownListReducer.isLoading
+  })
+  );
 
   useEffect(() => {
     dispatch(getDropDownListService())
   }, [dispatch])
 
   return (
-    dropDownList && dropDownList.length ?
+    dropDownList.dropDown && dropDownList.dropDown.length ?
       <div className="mainDiv">
         <FormControl className="formControl">
           <NativeSelect defaultValue="" onChange={(e) => { handleCountryEvent(e.currentTarget.value) }}>
             <option value="">Global</option>
-            {dropDownList.map((data, i) =>
+            {dropDownList.dropDown.map((data, i) =>
               <option
                 key={i}
                 value={data.value}>
