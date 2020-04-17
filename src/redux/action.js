@@ -1,20 +1,22 @@
+import Types from './types'
+
 const getWorldDataAction = (data) => {
   return {
-    type: "GET_WORLD_DATA",
+    type: Types.GET_WORLD_DATA,
     payload: data
   }
 }
 
 const getByCountryAction = (data) => {
   return {
-    type: "GET_BY_COUNTRY",
+    type: Types.GET_BY_COUNTRY,
     payload: data
   }
 }
 
 const getDropDownListAction = (data) => {
   return {
-    type: "GET_DROP_DOWN_LIST",
+    type: Types.GET_DROP_DOWN_LIST,
     payload: data
   }
 }

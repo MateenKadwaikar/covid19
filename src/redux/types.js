@@ -1,0 +1,11 @@
+const GET_BY_COUNTRY = "GET_BY_COUNTRY";
+const GET_DROP_DOWN_LIST = "GET_DROP_DOWN_LIST";
+const GET_WORLD_DATA = "GET_WORLD_DATA";
+
+const Types = {
+  GET_BY_COUNTRY,
+  GET_DROP_DOWN_LIST,
+  GET_WORLD_DATA
+}
+
+export default Types;

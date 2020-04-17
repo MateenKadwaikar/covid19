@@ -1,3 +1,5 @@
+import Types from './types'
+
 const initialState = {
   deaths: {},
   confirmed: {},
@@ -10,7 +12,7 @@ const DropDownInitialState = {
 
 export const getWorldDataReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_WORLD_DATA":
+    case Types.GET_WORLD_DATA:
       return {
         ...state,
         deaths: action.payload.deaths,
@@ -18,7 +20,7 @@ export const getWorldDataReducer = (state = initialState, action) => {
         recovered: action.payload.recovered,
         lastUpdate: action.payload.lastUpdate
       }
-    case "GET_BY_COUNTRY":
+    case Types.GET_BY_COUNTRY:
       return {
         ...state,
         deaths: action.payload.deaths,
@@ -33,7 +35,7 @@ export const getWorldDataReducer = (state = initialState, action) => {
 
 export const getDropDownListReducer = (state = DropDownInitialState, action) => {
   switch (action.type) {
-    case "GET_DROP_DOWN_LIST":
+    case Types.GET_DROP_DOWN_LIST:
       return {
         ...state,
         dropDownList: action.payload.map(x => ({ value: x.name }))

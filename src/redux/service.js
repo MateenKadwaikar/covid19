@@ -31,7 +31,6 @@ export const getDropDownListService = () => {
   return async (dispatch) => {
     try {
       const { data: { countries } } = await axios.get(`${url}/countries`);
-
       dispatch(Actions.getDropDownListAction(countries));
     } catch (err) {
       console.log(err)
