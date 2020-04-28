@@ -2,6 +2,7 @@
   max-width: 275px;
   min-width: 275px;
   margin-right: 20px;
+  margin-bottom: 10px;
 }
 .title {
   font-size: 14px,
@@ -10,7 +11,7 @@
   display: flex;
   margin-top: 20px;
   justify-content: center;
-  flex-wrap: wrap
+  flex-wrap: wrap;
 }
 .infected {
   border-bottom: 10px solid rgba(0, 0, 255, 0.5)
