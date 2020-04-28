@@ -10,6 +10,7 @@
   display: flex;
   margin-top: 20px;
   justify-content: center;
+  flex-wrap: wrap
 }
 .infected {
   border-bottom: 10px solid rgba(0, 0, 255, 0.5)
