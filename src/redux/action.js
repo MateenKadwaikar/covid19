@@ -28,11 +28,27 @@ const errorMessageAction = (data) => {
   }
 }
 
+const getDailyRecordsAction = (data) => {
+  return {
+    type: Types.DAILY_RECORDS,
+    payload: data
+  }
+}
+
+const getUserCurrentLocationAction = (data) => {
+  return {
+    type: Types.USER_LOCATION,
+    payload: data
+  }
+}
+
 const Actions = {
   getWorldDataAction,
   getByCountryAction,
   getDropDownListAction,
-  errorMessageAction
+  getDailyRecordsAction,
+  errorMessageAction,
+  getUserCurrentLocationAction
 }
 
 export default Actions;

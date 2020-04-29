@@ -1,6 +1,6 @@
 import Types from './types'
 
-const initialState = {
+const WorldDataInitialState = {
   deaths: {},
   confirmed: {},
   recovered: {},
@@ -11,12 +11,20 @@ const DropDownInitialState = {
   dropDownList: [],
   isLoading: true
 }
+const DailyRecordInitialState = {
+  dailyRecordList: [],
+  isLoading: true
+}
+
+const UserLocationIntitialState = {
+  country: '',
+}
 
 const ErrorIntitialState = {
   errorMessage: '',
 }
 
-export const getWorldDataReducer = (state = initialState, action) => {
+export const getWorldDataReducer = (state = WorldDataInitialState, action) => {
   switch (action.type) {
     case Types.GET_WORLD_DATA:
       return {
@@ -45,11 +53,36 @@ export const getDropDownListReducer = (state = DropDownInitialState, action) => 
     case Types.GET_DROP_DOWN_LIST:
       return {
         ...state,
-        dropDownList: action.payload.countries.map(x => ({ value: x.name })),
+        dropDownList: action.payload.countries.map(x => ({ value: x.name, iso: x.iso2 })),
         isLoading: action.payload.isLoading
       }
     default:
       return state
+  }
+}
+
+export const getDailyRecordReducer = (state = DailyRecordInitialState, action) => {
+  switch (action.type) {
+    case Types.DAILY_RECORDS:
+      return {
+        ...state,
+        dailyRecordList: action.payload.data,
+        isLoading: action.payload.isLoading
+      }
+    default:
+      return state;
+  }
+}
+
+export const userCurrentLocationReducer = (state = UserLocationIntitialState, action) => {
+  switch (action.type) {
+    case Types.USER_LOCATION:
+      return {
+        ...state,
+        country: action.payload
+      }
+    default:
+      return state;
   }
 }
 
@@ -64,3 +97,4 @@ export const errorMessageReducer = (state = ErrorIntitialState, action) => {
       return state;
   }
 }
+

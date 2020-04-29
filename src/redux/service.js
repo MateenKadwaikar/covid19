@@ -1,5 +1,6 @@
 import axios from 'axios'
 import Actions from './action'
+import { apiKey } from './apikey'
 
 let url = "https://covid19.mathdro.id/api";
 
@@ -23,8 +24,6 @@ export const getDataService = (country = '') => {
         dispatch(Actions.getByCountryAction(modifiedData)) :
         dispatch(Actions.getWorldDataAction(modifiedData));
     } catch (err) {
-      const { response: { data } } = err;
-      console.error(data)
       dispatch(Actions.errorMessageAction(err.response.data.error.message))
     }
   }
@@ -43,5 +42,32 @@ export const getDropDownListService = () => {
       dispatch(Actions.errorMessageAction(err.response.data.error.message))
     }
   }
+}
 
+export const getDailyRecordService = () => {
+  return async (dispatch) => {
+    try {
+      const data = await axios.get(`${url}/daily`);
+      const modifiedData = {
+        isLoading: false,
+        data: data.data
+      }
+      dispatch(Actions.getDailyRecordsAction(modifiedData));
+    } catch (err) {
+      dispatch(Actions.errorMessageAction(err.response.data.error.message))
+    }
+  }
+
+}
+
+export const getGeoLocationService = ({ latitude, longitude }) => {
+  return async (dispatch) => {
+    try {
+      const key = apiKey;
+      const { data: { results } } = await axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${key}&location=${latitude},${longitude}&includeRoadMetadata=false&includeNearestIntersection=false`);
+      dispatch(Actions.getUserCurrentLocationAction(results[0].locations[0].adminArea1));
+    } catch (err) {
+      dispatch(Actions.errorMessageAction("Fetching from map quest api failed"));
+    }
+  }
 }
