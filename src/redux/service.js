@@ -1,6 +1,5 @@
 import axios from 'axios'
 import Actions from './action'
-import { apiKey } from './apikey'
 
 let url = "https://covid19.mathdro.id/api";
 
@@ -63,8 +62,8 @@ export const getDailyRecordService = () => {
 export const getGeoLocationService = ({ latitude, longitude }) => {
   return async (dispatch) => {
     try {
-      const key = apiKey;
-      const { data: { results } } = await axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${key}&location=${latitude},${longitude}&includeRoadMetadata=false&includeNearestIntersection=false`);
+      const key = process.env.REACT_APP_MAP_KEY;
+      const { data: { results } } = await axios.get(`http://www.mapquestapi.com/geocoding/v1/reverse?key=${key.toString()}&location=${latitude},${longitude}&includeRoadMetadata=false&includeNearestIntersection=false`);
       dispatch(Actions.getUserCurrentLocationAction(results[0].locations[0].adminArea1));
     } catch (err) {
       dispatch(Actions.errorMessageAction("Fetching from map quest api failed"));
