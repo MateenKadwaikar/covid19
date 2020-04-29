@@ -5,8 +5,6 @@ import image from './image/image.jpg'
 import { getDataService } from './redux/service.js'
 import Cards from './card/card';
 import DropDownList from './dropdownlist/dropdownlist.jsx'
-import Graph from './graph/graph';
-
 
 function App() {
   const dispatch = useDispatch();
@@ -36,7 +34,6 @@ function App() {
       </div>
       <DropDownList handleCountryEvent={handleCountryEvent} />
       <Cards data={responseData} country={country} />
-      <Graph data={responseData} />
     </div>
   );
 }
